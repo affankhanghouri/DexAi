@@ -127,7 +127,7 @@ export function HeroSection() {
                   </Link>
 
                   <Link
-                    href="/campaigns/new"
+                    href="/dashboard/campaigns/new"
                     className="dhoom-glow-btn dhoom-glow-btn-gold"
                   >
                     Book a Campaign

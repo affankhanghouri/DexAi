@@ -73,7 +73,7 @@ export function RevealTextSection() {
                   Seller feeling
                 </p>
                 <h3 className="mt-2.5 text-[1.15rem] font-black leading-[1.2] tracking-[-0.04em] text-white">
-                  "Product acha hai… marketing kaise karun?"
+                  &quot;Product acha hai… marketing kaise karun?&quot;
                 </h3>
               </div>
 
@@ -82,7 +82,7 @@ export function RevealTextSection() {
                   Dhoom answer
                 </p>
                 <h3 className="mt-2.5 text-[1.15rem] font-black leading-[1.2] tracking-[-0.04em]">
-                  "Product bhejo. Campaign hum banate hain."
+                  &quot;Product bhejo. Campaign hum banate hain.&quot;
                 </h3>
               </div>
             </div>

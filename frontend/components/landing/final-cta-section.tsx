@@ -33,7 +33,7 @@ export function FinalCtaSection() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/campaigns/new"
+                  href="/dashboard/campaigns/new"
                   className="inline-flex items-center justify-center rounded-full bg-[#d9ff3f] px-7 py-4 text-sm font-black text-[#070816] shadow-[0_24px_70px_rgba(217,255,63,0.22)] transition hover:-translate-y-1 hover:scale-[1.02]"
                 >
                   Build my first campaign

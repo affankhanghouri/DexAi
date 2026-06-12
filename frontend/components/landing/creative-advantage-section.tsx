@@ -51,7 +51,7 @@ export function CreativeAdvantageSection() {
             Product wahi. Soch nayi. Campaign Dhoom wali.
           </p>
 
-          <Link href="/campaigns/new" className="creative-cta">
+          <Link href="/dashboard/campaigns/new" className="creative-cta">
             Build my campaign
           </Link>
         </div>
