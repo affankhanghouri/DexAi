@@ -10,11 +10,13 @@ const imageFiles = [
 ]
 
 const videoFiles = [
-  "video-1.mp4",
-  "video-3.mp4",
-  "video-4.mp4",
-  "video-5.mp4",
-  "video-6.mp4",
+  "WM_video-1.mp4",
+    "WM_video-2.mp4",
+
+  "WM_video-4.mp4",
+  "WM_video-5.mp4",
+  "WM_video-6.mp4",
+  "WM_video-7.mp4"
 ]
 
 const bucketBaseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/landing-assets`
@@ -216,7 +218,7 @@ function VideoCreativeCard({ src }: { src: string }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#070816]/45 via-transparent to-transparent" />
 
         <span className="absolute left-4 top-4 rounded-full bg-[#d4af37] px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.18em] text-[#070816]">
-          Video
+          AI generated
         </span>
       </div>
     </div>

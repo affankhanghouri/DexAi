@@ -72,25 +72,25 @@ export function FinalCtaSection() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/dashboard/campaigns/new"
+                href="/request-access"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d9ff3f] px-7 py-4 text-sm font-black text-[#070816] shadow-[0_24px_70px_rgba(217,255,63,0.22)] transition hover:-translate-y-1 hover:scale-[1.02]"
               >
                 <Rocket size={17} strokeWidth={2.6} />
-                Build my campaign
+                Start Dhoom
               </Link>
 
               <Link
-                href="/auth"
+                href="/request-access"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.08] px-7 py-4 text-sm font-black text-white backdrop-blur-xl transition hover:-translate-y-1 hover:bg-white/[0.12]"
               >
-                Sign up free
+                Get a free campaign sample
               </Link>
             </div>
           </div>
         </div>
 
         <footer className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm font-bold text-white/45 md:flex-row">
-          <p>© 2026 Dhoom AI. Built for Pakistani sellers.</p>
+          <p>© 2026 Dhoom AI.  all rights are reserved</p>
           <p>One product photo. Har platform par Dhoom.</p>
         </footer>
       </div>

@@ -35,7 +35,7 @@ export function Header() {
         </nav>
 
         <Link
-          href="/dashboard/campaigns/new"
+          href="/request-access"
           className="rounded-full bg-[#070816] px-6 py-3 text-sm font-black text-white shadow-[0_18px_40px_rgba(7,8,22,0.22)] transition hover:scale-105"
         >
           Start Dhoom

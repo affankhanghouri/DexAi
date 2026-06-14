@@ -153,14 +153,14 @@ export function HeroSection() {
 
                 <div className="dhoom-hero-action-row">
                   <Link
-                    href="/auth"
+                    href="/request-access"
                     className="dhoom-glow-btn dhoom-glow-btn-purple"
                   >
                     Get Access
                   </Link>
 
                   <Link
-                    href="/dashboard/campaigns/new"
+                    href="/request-access"
                     className="dhoom-glow-btn dhoom-glow-btn-gold"
                   >
                     Get a free campaign sample

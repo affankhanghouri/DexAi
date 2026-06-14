@@ -1,25 +1,34 @@
 "use client"
 
+import Link from "next/link"
 import { createAccessRequest } from "@/lib/access-requests"
 import { motion } from "framer-motion"
 import {
-  ArrowRight,
+  ArrowLeft,
   Check,
   Globe,
+  ImagePlus,
   Loader2,
+  Mail,
   MessageCircle,
-  PackageCheck,
   Send,
   Sparkles,
   Store,
-  Wand2,
+  WandSparkles,
 } from "lucide-react"
+import type React from "react"
 import { useState } from "react"
 
+type ContactMethod = "whatsapp" | "email"
+
 export function RequestAccessSection() {
+  const [contactMethod, setContactMethod] = useState<ContactMethod>("whatsapp")
   const [whatsappNumber, setWhatsappNumber] = useState("")
-  const [storeLink, setStoreLink] = useState("")
+  const [email, setEmail] = useState("")
+  const [brandLink, setBrandLink] = useState("")
   const [productCategory, setProductCategory] = useState("")
+  const [productImageFile, setProductImageFile] = useState<File | null>(null)
+  const [productImagePreview, setProductImagePreview] = useState("")
   const [note, setNote] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -29,30 +38,55 @@ export function RequestAccessSection() {
     event.preventDefault()
     setError("")
 
-    if (!whatsappNumber.trim()) {
-      setError("Please enter your WhatsApp number.")
+    const trimmedWhatsapp = whatsappNumber.trim()
+    const trimmedEmail = email.trim()
+    const trimmedBrandLink = brandLink.trim()
+
+    if (contactMethod === "whatsapp" && !trimmedWhatsapp) {
+      setError("Please enter the WhatsApp number where we should contact you.")
       return
     }
 
-    if (!storeLink.trim()) {
-      setError("Please enter your store, Instagram, Facebook, or website link.")
+    if (contactMethod === "email" && !trimmedEmail) {
+      setError("Please enter the email where you want the sample.")
+      return
+    }
+
+    if (!trimmedBrandLink) {
+      setError("Please enter your brand, store, Instagram, or website link.")
       return
     }
 
     setIsSubmitting(true)
 
     try {
+      const contactValue =
+        contactMethod === "whatsapp" ? trimmedWhatsapp : `email:${trimmedEmail}`
+
+      const requestNotes = [
+        `Preferred contact: ${contactMethod}`,
+        trimmedWhatsapp ? `WhatsApp: ${trimmedWhatsapp}` : "",
+        trimmedEmail ? `Email: ${trimmedEmail}` : "",
+        note.trim() ? `Seller note: ${note.trim()}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n")
+
       await createAccessRequest({
-        whatsappNumber: whatsappNumber.trim(),
-        storeLink: storeLink.trim(),
+        whatsappNumber: contactValue,
+        storeLink: trimmedBrandLink,
         productCategory: productCategory.trim(),
-        note: note.trim(),
+        note: requestNotes,
+        productImageFile,
       })
 
       setSuccess(true)
       setWhatsappNumber("")
-      setStoreLink("")
+      setEmail("")
+      setBrandLink("")
       setProductCategory("")
+      setProductImageFile(null)
+      setProductImagePreview("")
       setNote("")
     } catch (err) {
       setError(
@@ -66,224 +100,283 @@ export function RequestAccessSection() {
   }
 
   return (
-    <section
-      id="request-access"
-      className="relative overflow-hidden bg-[#070816] px-5 py-24 text-white md:px-8 md:py-32"
-    >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-14%] top-[-10%] h-[420px] w-[420px] rounded-full bg-[#d9ff3f]/15 blur-[100px]" />
-        <div className="absolute right-[-12%] top-[12%] h-[420px] w-[420px] rounded-full bg-orange-500/15 blur-[110px]" />
-        <div className="absolute bottom-[-18%] left-[35%] h-[380px] w-[380px] rounded-full bg-fuchsia-500/10 blur-[120px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),transparent_28%,rgba(217,255,63,0.04))]" />
-      </div>
+    <main className="relative min-h-screen overflow-hidden bg-[#070816] px-4 py-6 text-white md:px-8">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(217,255,63,0.16),transparent_30%),radial-gradient(circle_at_82%_16%,rgba(236,72,153,0.18),transparent_34%),linear-gradient(135deg,#070816_0%,#170720_52%,#061421_100%)]" />
+      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] [background-size:64px_64px]" />
+      <div className="absolute left-1/2 top-[-14rem] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-[#d9ff3f]/10 blur-[110px]" />
 
-      <div className="relative z-10 mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[1fr_460px] lg:items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55 }}
-        >
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d9ff3f]/20 bg-[#d9ff3f]/10 px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.22em] text-[#d9ff3f]">
-            <Sparkles size={14} />
-            Early access
-          </div>
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-3rem)] max-w-[1080px] flex-col">
+        <div className="flex items-center justify-between py-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-sm font-black text-white/72 backdrop-blur-2xl transition hover:bg-white/[0.11]"
+          >
+            <ArrowLeft size={16} />
+            Back
+          </Link>
 
-          <h2 className="max-w-3xl text-5xl font-black tracking-[-0.09em] text-white md:text-7xl">
-            Get a free Dhoom campaign sample.
-          </h2>
+          <span className="rounded-full border border-[#d4af37]/35 bg-white/[0.06] px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.26em] text-[#d4af37] backdrop-blur-2xl">
+            Dhoom Studio
+          </span>
+        </div>
 
-          <p className="mt-5 max-w-2xl text-base font-bold leading-8 text-white/55 md:text-lg">
-            Send your store link. We’ll review your product and WhatsApp you a
-            sample AI ad or campaign direction made for your brand.
-          </p>
-
-          <div className="mt-8 grid gap-3 md:grid-cols-3">
-            <PromiseCard
-              icon={<Store size={18} />}
-              title="Send store"
-              text="Instagram, Facebook, Shopify, Daraz, or website link."
-            />
-
-            <PromiseCard
-              icon={<Wand2 size={18} />}
-              title="We create"
-              text="A sample campaign direction or ad preview for your product."
-            />
-
-            <PromiseCard
-              icon={<MessageCircle size={18} />}
-              title="WhatsApp reply"
-              text="We contact you directly with your sample."
-            />
-          </div>
-
-          <div className="mt-8 rounded-[1.4rem] border border-white/10 bg-white/[0.045] p-4 backdrop-blur-2xl">
-            <div className="flex gap-3">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-[#d9ff3f] text-[#070816]">
-                <PackageCheck size={18} />
-              </div>
-
-              <div>
-                <h3 className="text-lg font-black tracking-[-0.04em] text-white">
-                  No dashboard needed yet.
-                </h3>
-
-                <p className="mt-1 text-sm font-bold leading-6 text-white/45">
-                  Dhoom is currently giving selected sellers manual campaign
-                  samples before full dashboard access opens.
-                </p>
-              </div>
+        <div className="grid flex-1 items-center gap-7 py-8 lg:grid-cols-[0.9fr_0.78fr]">
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d9ff3f]/25 bg-[#d9ff3f]/10 px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.22em] text-[#d9ff3f] backdrop-blur-2xl">
+              <Sparkles size={14} />
+              Launching soon
             </div>
-          </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ delay: 0.1, duration: 0.55 }}
-          className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.065] p-4 shadow-[0_32px_110px_rgba(0,0,0,0.5)] backdrop-blur-2xl md:p-5"
-        >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(217,255,63,0.2),transparent_34%),radial-gradient(circle_at_90%_30%,rgba(249,115,22,0.16),transparent_36%)]" />
+            <h1 className="dhoom-luxe-heading max-w-[650px] text-[clamp(2.7rem,5.8vw,5.7rem)]">
+              Dhoom Studio
+              <br />
+              <span>is opening soon.</span>
+            </h1>
 
-          <div className="relative z-10 rounded-[1.55rem] border border-white/10 bg-[#070816]/72 p-5">
-            {success ? (
-              <SuccessState
-                onReset={() => {
-                  setSuccess(false)
-                }}
-              />
-            ) : (
-              <>
-                <div className="mb-6">
-                  <p className="text-[0.62rem] font-black uppercase tracking-[0.22em] text-orange-300">
-                    Request access
-                  </p>
+            <p className="mt-5 max-w-[590px] text-[0.98rem] font-bold leading-8 text-white/62 md:text-base">
+              Until the studio opens, you can get a free campaign sample from
+              the actual Dhoom engine. Send your brand link and product photo;
+              our team will contact you with the sample.
+            </p>
 
-                  <h3 className="mt-2 text-3xl font-black tracking-[-0.07em] text-white">
-                    Let Dhoom review your store.
-                  </h3>
-
-                  <p className="mt-2 text-sm font-bold leading-6 text-white/45">
-                    Fill this once. We’ll use your details only to contact you
-                    about your campaign sample.
-                  </p>
+            <div className="mt-7 max-w-[590px] rounded-[1.4rem] border border-white/14 bg-white/[0.075] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_24px_80px_rgba(0,0,0,0.25)] backdrop-blur-3xl">
+              <div className="flex gap-3">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-[#d9ff3f] text-[#070816]">
+                  <WandSparkles size={18} />
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <FormField
-                    icon={<MessageCircle size={16} />}
-                    label="WhatsApp number"
-                  >
-                    <input
-                      value={whatsappNumber}
-                      onChange={(event) =>
-                        setWhatsappNumber(event.target.value)
-                      }
-                      placeholder="+92 3XX XXXXXXX"
-                      className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
-                    />
-                  </FormField>
+                <div>
+                  <h2 className="text-xl font-black tracking-[-0.05em] text-white">
+                    Concierge campaign sample
+                  </h2>
+                  <p className="mt-1 text-sm font-bold leading-6 text-white/50">
+                    This is not dashboard access yet. It is a free sample made
+                    for selected brands while Dhoom Studio prepares to launch.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.section>
 
-                  <FormField icon={<Globe size={16} />} label="Store link">
-                    <input
-                      value={storeLink}
-                      onChange={(event) => setStoreLink(event.target.value)}
-                      placeholder="Instagram, Facebook, Shopify, Daraz, website..."
-                      className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
-                    />
-                  </FormField>
+          <motion.section
+            initial={{ opacity: 0, y: 22, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.08, duration: 0.55 }}
+            className="relative rounded-[2rem] border border-white/24 bg-white/[0.14] p-4 shadow-[0_32px_90px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-[34px]"
+          >
+            <div className="absolute inset-0 rounded-[2rem] bg-[linear-gradient(145deg,rgba(255,255,255,0.22),rgba(255,255,255,0.055)_48%,rgba(217,255,63,0.075))]" />
 
-                  <FormField icon={<Store size={16} />} label="Product category">
-                    <input
-                      value={productCategory}
-                      onChange={(event) =>
-                        setProductCategory(event.target.value)
-                      }
-                      placeholder="Fashion, perfume, food, skincare, shoes..."
-                      className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
-                    />
-                  </FormField>
-
-                  <label className="block">
-                    <p className="mb-2 text-[0.58rem] font-black uppercase tracking-[0.18em] text-white/35">
-                      Optional note
+            <div className="relative rounded-[1.55rem] border border-white/18 bg-[#070816]/74 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+              {success ? (
+                <SuccessState
+                  onReset={() => {
+                    setSuccess(false)
+                  }}
+                />
+              ) : (
+                <>
+                  <div className="mb-5">
+                    <p className="text-[0.62rem] font-black uppercase tracking-[0.22em] text-[#d4af37]">
+                      Request free campaign sample
                     </p>
 
-                    <textarea
-                      value={note}
-                      onChange={(event) => setNote(event.target.value)}
-                      rows={4}
-                      placeholder="Tell us what product you want promoted, any offer, or what kind of ad you want..."
-                      className="w-full resize-none rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm font-bold leading-6 text-white outline-none transition placeholder:text-white/28 focus:border-[#d9ff3f]/35"
-                    />
-                  </label>
-
-                  <div className="rounded-2xl border border-[#d9ff3f]/20 bg-[#d9ff3f]/10 p-3">
-                    <p className="text-xs font-bold leading-5 text-[#d9ff3f]">
-                      By submitting, you agree that Dhoom may contact you on
-                      WhatsApp with your sample campaign.
-                    </p>
+                    <h2 className="mt-2 text-2xl font-black tracking-[-0.06em] text-white">
+                      Where should we send it?
+                    </h2>
                   </div>
 
-                  {error && (
-                    <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3">
-                      <p className="text-sm font-bold leading-6 text-red-200">
-                        {error}
-                      </p>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-2 gap-2">
+                      <ContactToggle
+                        active={contactMethod === "whatsapp"}
+                        icon={<MessageCircle size={16} />}
+                        label="WhatsApp"
+                        onClick={() => setContactMethod("whatsapp")}
+                      />
+                      <ContactToggle
+                        active={contactMethod === "email"}
+                        icon={<Mail size={16} />}
+                        label="Email"
+                        onClick={() => setContactMethod("email")}
+                      />
                     </div>
-                  )}
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="group relative inline-flex min-h-13 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-orange-500 to-[#d9ff3f] px-5 text-sm font-black text-[#070816] shadow-[0_0_55px_rgba(217,255,63,0.2)] transition hover:scale-[1.01] disabled:cursor-wait disabled:opacity-60"
-                  >
-                    <span className="relative z-10 inline-flex items-center gap-2">
-                      {isSubmitting ? (
-                        <Loader2 size={17} className="animate-spin" />
-                      ) : (
-                        <Send size={17} />
-                      )}
-                      {isSubmitting
-                        ? "Submitting request..."
-                        : "Request free sample"}
-                    </span>
+                    {contactMethod === "whatsapp" ? (
+                      <FormField
+                        icon={<MessageCircle size={16} />}
+                        label="WhatsApp number"
+                      >
+                        <input
+                          value={whatsappNumber}
+                          onChange={(event) =>
+                            setWhatsappNumber(event.target.value)
+                          }
+                          placeholder="+92 3XX XXXXXXX"
+                          className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
+                        />
+                      </FormField>
+                    ) : (
+                      <FormField icon={<Mail size={16} />} label="Email">
+                        <input
+                          value={email}
+                          onChange={(event) => setEmail(event.target.value)}
+                          placeholder="you@brand.com"
+                          className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
+                        />
+                      </FormField>
+                    )}
 
-                    <span className="absolute inset-0 translate-x-[-110%] bg-white/35 blur-xl transition group-hover:translate-x-[110%]" />
-                  </button>
-                </form>
-              </>
-            )}
-          </div>
-        </motion.div>
+                    <FormField icon={<Globe size={16} />} label="Brand link">
+                      <input
+                        value={brandLink}
+                        onChange={(event) => setBrandLink(event.target.value)}
+                        placeholder="Instagram, Facebook, Shopify, Daraz..."
+                        className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
+                      />
+                    </FormField>
+
+                    <FormField icon={<Store size={16} />} label="Product category">
+                      <input
+                        value={productCategory}
+                        onChange={(event) =>
+                          setProductCategory(event.target.value)
+                        }
+                        placeholder="Perfume, fashion, food, skincare..."
+                        className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
+                      />
+                    </FormField>
+
+                    <label className="block">
+                      <p className="mb-2 text-[0.58rem] font-black uppercase tracking-[0.18em] text-white/38">
+                        Product photo
+                      </p>
+
+                      <div className="relative rounded-2xl border border-dashed border-white/18 bg-white/[0.07] p-4 transition hover:border-[#d9ff3f]/45">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(event) => {
+                            const file = event.target.files?.[0] || null
+                            setProductImageFile(file)
+
+                            if (productImagePreview) {
+                              URL.revokeObjectURL(productImagePreview)
+                            }
+
+                            if (file) {
+                              setProductImagePreview(URL.createObjectURL(file))
+                            } else {
+                              setProductImagePreview("")
+                            }
+                          }}
+                          className="absolute inset-0 cursor-pointer opacity-0"
+                        />
+                        <div className="flex items-center gap-3">
+                          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-white/[0.08] text-[#d4af37]">
+                            <ImagePlus size={18} />
+                          </div>
+                          <div>
+                            <p className="text-sm font-black text-white">
+                              {productImageFile
+                                ? productImageFile.name
+                                : "Upload one clean product photo"}
+                            </p>
+                            <p className="mt-0.5 text-xs font-bold text-white/38">
+                              Optional. JPG, PNG, or WebP.
+                            </p>
+                          </div>
+                        </div>
+                        {productImagePreview && (
+                          <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-black/30">
+                            <img
+                              src={productImagePreview}
+                              alt="Product preview"
+                              className="h-40 w-full object-cover"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </label>
+
+                    <label className="block">
+                      <p className="mb-2 text-[0.58rem] font-black uppercase tracking-[0.18em] text-white/38">
+                        Optional note
+                      </p>
+
+                      <textarea
+                        value={note}
+                        onChange={(event) => setNote(event.target.value)}
+                        rows={3}
+                        placeholder="Any offer, product detail, or style you want?"
+                        className="w-full resize-none rounded-2xl border border-white/14 bg-white/[0.07] px-4 py-3 text-sm font-bold leading-6 text-white outline-none transition placeholder:text-white/28 focus:border-[#d9ff3f]/45"
+                      />
+                    </label>
+
+                    {error && (
+                      <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3">
+                        <p className="text-sm font-bold leading-6 text-red-200">
+                          {error}
+                        </p>
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group relative inline-flex min-h-13 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-[#d9ff3f] px-5 text-sm font-black text-[#070816] shadow-[0_0_55px_rgba(217,255,63,0.22)] transition hover:scale-[1.01] disabled:cursor-wait disabled:opacity-60"
+                    >
+                      <span className="relative z-10 inline-flex items-center gap-2">
+                        {isSubmitting ? (
+                          <Loader2 size={17} className="animate-spin" />
+                        ) : (
+                          <Send size={17} />
+                        )}
+                        {isSubmitting
+                          ? "Adding request..."
+                          : "Get a free campaign sample"}
+                      </span>
+
+                      <span className="absolute inset-0 translate-x-[-110%] bg-white/35 blur-xl transition group-hover:translate-x-[110%]" />
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
+          </motion.section>
+        </div>
       </div>
-    </section>
+    </main>
   )
 }
 
-function PromiseCard({
+function ContactToggle({
+  active,
   icon,
-  title,
-  text,
+  label,
+  onClick,
 }: {
+  active: boolean
   icon: React.ReactNode
-  title: string
-  text: string
+  label: string
+  onClick: () => void
 }) {
   return (
-    <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-4 backdrop-blur-2xl">
-      <div className="mb-3 grid h-10 w-10 place-items-center rounded-2xl bg-[#d9ff3f] text-[#070816]">
-        {icon}
-      </div>
-
-      <h3 className="text-xl font-black tracking-[-0.05em] text-white">
-        {title}
-      </h3>
-
-      <p className="mt-2 text-xs font-bold leading-5 text-white/45">{text}</p>
-    </div>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border px-3 text-sm font-black transition ${
+        active
+          ? "border-[#d9ff3f]/45 bg-[#d9ff3f] text-[#070816]"
+          : "border-white/14 bg-white/[0.07] text-white/62 hover:bg-white/[0.1]"
+      }`}
+    >
+      {icon}
+      {label}
+    </button>
   )
 }
 
@@ -298,12 +391,12 @@ function FormField({
 }) {
   return (
     <label className="block">
-      <p className="mb-2 text-[0.58rem] font-black uppercase tracking-[0.18em] text-white/35">
+      <p className="mb-2 text-[0.58rem] font-black uppercase tracking-[0.18em] text-white/38">
         {label}
       </p>
 
-      <div className="flex min-h-12 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-4 transition focus-within:border-[#d9ff3f]/35">
-        <div className="text-orange-300">{icon}</div>
+      <div className="flex min-h-12 items-center gap-3 rounded-2xl border border-white/14 bg-white/[0.07] px-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition focus-within:border-[#d9ff3f]/45">
+        <div className="text-[#d4af37]">{icon}</div>
         {children}
       </div>
     </label>
@@ -323,21 +416,20 @@ function SuccessState({ onReset }: { onReset: () => void }) {
           <Check size={30} />
         </motion.div>
 
-        <h3 className="mt-5 text-4xl font-black tracking-[-0.08em] text-white">
-          Request received.
-        </h3>
+        <h2 className="mt-5 text-4xl font-black tracking-[-0.08em] text-white">
+          Your request has been added.
+        </h2>
 
         <p className="mx-auto mt-3 max-w-sm text-sm font-bold leading-7 text-white/50">
-          We’ll review your store and contact you on WhatsApp with your Dhoom
-          campaign sample.
+          Dhoom AI team will contact you soon with your free campaign sample.
         </p>
 
         <button
           onClick={onReset}
-          className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.065] px-5 text-sm font-black text-white/70 transition hover:bg-white/[0.1]"
+          className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-white/14 bg-white/[0.08] px-5 text-sm font-black text-white/72 transition hover:bg-white/[0.12]"
         >
+          <WandSparkles size={16} />
           Submit another request
-          <ArrowRight size={16} />
         </button>
       </div>
     </div>
