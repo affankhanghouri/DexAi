@@ -5,6 +5,7 @@ from core.config import settings
 from routes.brand_dna import router as brand_dna_router
 from routes.brand_dna_enrichment import router as brand_dna_enrichment_router
 from routes.brand_intake import router as brand_intake_router
+from routes.campaign_angles import router as campaign_angles_router
 from routes.campaign_asset_briefs import router as campaign_asset_briefs_router
 from routes.campaign_ghost_editor import router as campaign_ghost_editor_router
 from routes.campaign_generated_assets import router as campaign_generated_assets_router
@@ -48,6 +49,7 @@ def health():
 app.include_router(brand_dna_router, prefix="/api/v1")
 app.include_router(brand_dna_enrichment_router, prefix="/api/v1")
 app.include_router(brand_intake_router, prefix="/api/v1")
+app.include_router(campaign_angles_router, prefix="/api/v1")
 app.include_router(campaign_asset_briefs_router, prefix="/api/v1")
 app.include_router(campaign_ghost_editor_router, prefix="/api/v1")
 app.include_router(campaign_generated_assets_router, prefix="/api/v1")

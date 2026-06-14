@@ -1,4 +1,4 @@
-import { CampaignsPage } from "@/components/dashboard/campaign-page"
+import { CampaignsPage } from "@/components/dashboard/campaigns-page"
 
 export default function CampaignsRoutePage() {
   return <CampaignsPage />

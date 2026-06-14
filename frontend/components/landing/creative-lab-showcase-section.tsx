@@ -32,7 +32,7 @@ export function CreativeLabShowcaseSection() {
   const repeatedVideos = [...videoFiles, ...videoFiles]
 
   return (
-    <section className="relative overflow-hidden bg-[#050611] py-16 text-white md:py-20">
+    <section className="dhoom-reveal relative overflow-hidden bg-[#050611] py-16 text-white md:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(212,175,55,0.18),transparent_30%),radial-gradient(circle_at_88%_18%,rgba(236,72,153,0.22),transparent_34%),radial-gradient(circle_at_50%_100%,rgba(20,184,166,0.2),transparent_38%),linear-gradient(135deg,#050611,#170623_48%,#061421)]" />
 
       <div className="showcase-dots absolute inset-0 opacity-20" />
@@ -43,8 +43,8 @@ export function CreativeLabShowcaseSection() {
           Creative Proof
         </p>
 
-        <h2 className="mx-auto max-w-[880px] text-[clamp(2.5rem,4.7vw,5rem)] font-black leading-[0.86] tracking-[-0.085em] text-white drop-shadow-[0_0_34px_rgba(255,255,255,0.16)]">
-          Posters and ads
+        <h2 className="dhoom-luxe-heading mx-auto max-w-[880px] text-[clamp(2.8rem,5.2vw,5.6rem)]">
+          Posters and <span>ads</span>
           <br />
           made to stop the scroll.
         </h2>
@@ -58,7 +58,7 @@ export function CreativeLabShowcaseSection() {
       {/* POSTER ROW */}
       <div className="relative z-10">
         <div className="mb-5 flex items-center justify-between px-5 md:px-10 lg:px-16">
-          <h3 className="text-2xl font-black tracking-[-0.06em] md:text-4xl">
+          <h3 className="dhoom-card-title text-2xl md:text-4xl">
             Campaign posters Dhoom can make
           </h3>
 
@@ -82,7 +82,7 @@ export function CreativeLabShowcaseSection() {
       {/* VIDEO ROW */}
       <div className="relative z-10 mt-16 md:mt-20">
         <div className="mb-5 flex items-center justify-between px-5 md:px-10 lg:px-16">
-          <h3 className="text-2xl font-black tracking-[-0.06em] md:text-4xl">
+          <h3 className="dhoom-card-title text-2xl md:text-4xl">
             Campaign ads that look unreal
           </h3>
 

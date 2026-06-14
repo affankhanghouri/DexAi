@@ -1,5 +1,5 @@
-import { BrandDnaSetup } from "@/components/brand-dna/brand-dna-setup"
+import { BrandDNASetup } from "@/components/brand-dna/brand-dna-setup"
 
-export default function BrandDnaPage() {
-  return <BrandDnaSetup />
+export default function BrandDNAPage() {
+  return <BrandDNASetup />
 }

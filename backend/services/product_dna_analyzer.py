@@ -1,0 +1,1 @@
+from services.product_dna_generator import fallback_product_dna

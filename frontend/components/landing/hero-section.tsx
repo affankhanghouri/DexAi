@@ -2,7 +2,15 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
+
+const clamp = (value: number, min = 0, max = 1) =>
+  Math.max(min, Math.min(max, value))
+
+const easeInOutCubic = (value: number) =>
+  value < 0.5 ? 4 * value ** 3 : 1 - Math.pow(-2 * value + 2, 3) / 2
+
+const HERO_TRANSITION_VIEWPORTS = 1.15
 
 const leftCreativityImages = [
   "/images/landing/creativity-2.jpg",
@@ -16,101 +24,126 @@ const rightCreativityImages = [
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [progress, setProgress] = useState(0)
+  const sceneRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let animationFrame: number
     let targetProgress = 0
     let currentProgress = 0
+    let renderedProgress = -1
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches
 
     const calculateProgress = () => {
       if (!sectionRef.current) return
 
       const rect = sectionRef.current.getBoundingClientRect()
       const scrolled = -rect.top
-      const total = window.innerHeight * 1.7
+      const total = window.innerHeight * HERO_TRANSITION_VIEWPORTS
 
-      targetProgress = Math.max(0, Math.min(1, scrolled / total))
+      targetProgress = clamp(scrolled / total)
+    }
+
+    const handleScroll = () => {
+      calculateProgress()
     }
 
     const animate = () => {
-      currentProgress += (targetProgress - currentProgress) * 0.12
+      const followStrength = prefersReducedMotion ? 1 : 0.34
 
-      if (Math.abs(targetProgress - currentProgress) < 0.001) {
+      currentProgress += (targetProgress - currentProgress) * followStrength
+
+      if (Math.abs(targetProgress - currentProgress) < 0.0008) {
         currentProgress = targetProgress
       }
 
-      setProgress(currentProgress)
+      if (Math.abs(renderedProgress - currentProgress) > 0.0005) {
+        renderedProgress = currentProgress
+        const wordProgress = easeInOutCubic(clamp(currentProgress / 0.2))
+        const gridProgress = easeInOutCubic(
+          clamp((currentProgress - 0.06) / 0.62),
+        )
+        const copyProgress = easeInOutCubic(
+          clamp((currentProgress - 0.14) / 0.5),
+        )
+
+        sceneRef.current?.style.setProperty(
+          "--hero-word-opacity",
+          String(1 - wordProgress),
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-copy-progress",
+          String(copyProgress),
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-stage-scale-y",
+          String(1 - gridProgress * 0.035),
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-stage-radius",
+          `${gridProgress * 28}px`,
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-stage-inset",
+          `${gridProgress * 23}vw`,
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-side-opacity",
+          String(clamp((gridProgress - 0.05) / 0.75)),
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-left-x",
+          `${-115 + gridProgress * 115}%`,
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-right-x",
+          `${115 - gridProgress * 115}%`,
+        )
+        sceneRef.current?.style.setProperty(
+          "--hero-copy-y",
+          `${(1 - copyProgress) * 18}px`,
+        )
+      }
 
       animationFrame = requestAnimationFrame(animate)
     }
 
-    window.addEventListener("scroll", calculateProgress, { passive: true })
+    window.addEventListener("scroll", handleScroll, { passive: true })
     window.addEventListener("resize", calculateProgress)
 
     calculateProgress()
     animate()
 
     return () => {
-      window.removeEventListener("scroll", calculateProgress)
+      window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", calculateProgress)
       cancelAnimationFrame(animationFrame)
     }
   }, [])
 
-  const wordOpacity = Math.max(0, 1 - progress / 0.22)
-  const gridProgress = Math.max(0, Math.min(1, (progress - 0.16) / 0.84))
-  const centerWidth = 100 - gridProgress * 48
-  const sideWidth = gridProgress * 23
-  const sideOpacity = gridProgress
-  const leftMove = -110 + gridProgress * 110
-  const rightMove = 110 - gridProgress * 110
-  const radius = gridProgress * 28
-  const gap = gridProgress * 18
-
   return (
-    <section ref={sectionRef} className="relative min-h-[360vh] bg-[#080814]">
+    <section
+      ref={sectionRef}
+      className="relative min-h-[260vh] bg-[#080814] md:min-h-[275vh]"
+    >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div
-          className="relative flex h-full w-full items-stretch justify-center"
-          style={{
-            gap: `${gap}px`,
-            padding: `${gridProgress * 18}px`,
-          }}
-        >
+        <div ref={sceneRef} className="dhoom-scroll-scene">
           {/* Left side cards */}
-          <div
-            className="hidden flex-col gap-4 md:flex"
-            style={{
-              width: `${sideWidth}%`,
-              opacity: sideOpacity,
-              transform: `translate3d(${leftMove}%, 0, 0)`,
-              willChange: "transform, opacity, width",
-            }}
-          >
+          <div className="dhoom-scroll-rail dhoom-scroll-rail-left hidden md:flex">
             {leftCreativityImages.map((src) => (
               <CreativityImageCard key={src} src={src} />
             ))}
           </div>
 
           {/* Center panel */}
-          <div
-            className="dhoom-hero-stage relative overflow-hidden"
-            style={{
-              width: `${centerWidth}%`,
-              borderRadius: `${radius}px`,
-              willChange: "width, border-radius",
-            }}
-          >
+          <div className="dhoom-hero-stage dhoom-scroll-stage relative overflow-hidden">
             <div className="dhoom-soft-aurora" />
             <div className="dhoom-star-dust" />
             <div className="dhoom-energy-ribbon" />
 
             {/* Hero title — fades out on scroll */}
-            <div
-              className="absolute inset-0 flex items-center justify-center overflow-visible"
-              style={{ opacity: wordOpacity }}
-            >
+            <div className="dhoom-scroll-title absolute inset-0 flex items-center justify-center overflow-visible">
               <div className="dhoom-title-stack">
                 <p className="dhoom-hero-small-text">apnay products ki</p>
 
@@ -123,14 +156,14 @@ export function HeroSection() {
                     href="/auth"
                     className="dhoom-glow-btn dhoom-glow-btn-purple"
                   >
-                    Signup
+                    Get Access
                   </Link>
 
                   <Link
                     href="/dashboard/campaigns/new"
                     className="dhoom-glow-btn dhoom-glow-btn-gold"
                   >
-                    Book a Campaign
+                    Get a free campaign sample
                   </Link>
                 </div>
               </div>
@@ -138,13 +171,7 @@ export function HeroSection() {
 
             {/* Scroll-in creative copy — fades in on scroll */}
             <div
-              className="absolute inset-0 z-20 flex items-center justify-center px-6 text-center will-change-transform"
-              style={{
-                opacity: gridProgress,
-                transform: `translate3d(0, ${(1 - gridProgress) * 22}px, 0)`,
-                pointerEvents: gridProgress > 0.8 ? "auto" : "none",
-                willChange: "transform, opacity",
-              }}
+              className="dhoom-scroll-copy-layer absolute inset-0 z-20 flex items-center justify-center px-6 text-center"
             >
               <div className="creative-scroll-copy">
                 <p className="creative-scroll-kicker">DHOOM CREATIVE ENGINE</p>
@@ -177,15 +204,7 @@ export function HeroSection() {
           </div>
 
           {/* Right side cards */}
-          <div
-            className="hidden flex-col gap-4 md:flex"
-            style={{
-              width: `${sideWidth}%`,
-              opacity: sideOpacity,
-              transform: `translate3d(${rightMove}%, 0, 0)`,
-              willChange: "transform, opacity, width",
-            }}
-          >
+          <div className="dhoom-scroll-rail dhoom-scroll-rail-right hidden md:flex">
             {rightCreativityImages.map((src) => (
               <CreativityImageCard key={src} src={src} />
             ))}

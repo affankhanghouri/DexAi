@@ -6,7 +6,7 @@ from schemas.campaign_variants import (
     RefineVariantRequest,
     RefineVariantResponse,
 )
-from services.campaign_varian_generator import (
+from services.campaign_variant_generator import (
     fallback_campaign_variants,
     fallback_refine_variant,
 )

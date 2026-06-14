@@ -69,27 +69,27 @@ export function CampaignGallerySection() {
       ref={sectionRef}
       className="relative min-h-[280vh] overflow-visible bg-[#fbf7ff]"
     >
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 flex min-h-screen flex-col justify-center overflow-hidden py-10 md:py-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(212,175,55,0.12),transparent_28%),radial-gradient(circle_at_82%_20%,rgba(168,85,247,0.12),transparent_34%),radial-gradient(circle_at_50%_100%,rgba(20,184,166,0.1),transparent_38%)]" />
 
-        <div className="relative z-10 mx-auto mb-9 max-w-[920px] px-5 text-center">
-          <p className="mx-auto mb-4 w-fit rounded-full border border-purple-700/20 bg-purple-700/5 px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.3em] text-purple-700">
+        <div className="relative z-10 mx-auto mb-7 max-w-[920px] px-5 text-center">
+          <p className="mx-auto mb-3 w-fit rounded-full border border-purple-700/20 bg-purple-700/5 px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.3em] text-purple-700">
             Dhoom Moment Engine
           </p>
 
-          <h2 className="moment-gallery-title text-[clamp(2.25rem,4vw,4.2rem)] font-black leading-[0.9] tracking-[-0.085em] text-[#070816]">
+          <h2 className="moment-gallery-title dhoom-luxe-heading-dark text-[clamp(2.2rem,4vw,4.25rem)]">
             One product.
             <br />
-            Many Dhoom moments.
+            Many <span>Dhoom</span> moments.
           </h2>
 
-          <p className="mx-auto mt-5 max-w-[560px] text-sm font-bold leading-7 text-slate-500 md:text-base">
+          <p className="mx-auto mt-4 max-w-[560px] text-sm font-bold leading-6 text-slate-500 md:text-[0.95rem]">
             Dhoom finds the right campaign moment, the right selling angle, and
             the creative direction your product needs.
           </p>
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 pb-4">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 bg-gradient-to-r from-[#fbf7ff] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 bg-gradient-to-l from-[#fbf7ff] to-transparent" />
 
@@ -143,7 +143,7 @@ function MomentCard({
   }
 }) {
   return (
-    <article className="group relative h-[24rem] w-[20rem] shrink-0 overflow-hidden rounded-[2rem] border border-white/70 bg-[#070816] p-5 shadow-[0_28px_80px_rgba(15,23,42,0.18)] md:h-[25.5rem] md:w-[23rem]">
+    <article className="group relative h-[22rem] w-[19rem] shrink-0 overflow-hidden rounded-[2rem] border border-white/70 bg-[#070816] p-5 shadow-[0_28px_80px_rgba(15,23,42,0.18)] md:h-[23rem] md:w-[22rem]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(217,255,63,0.34),transparent_30%),radial-gradient(circle_at_88%_20%,rgba(236,72,153,0.38),transparent_34%),radial-gradient(circle_at_55%_100%,rgba(20,184,166,0.35),transparent_38%),linear-gradient(135deg,#070816,#3b0764_54%,#0f766e)]" />
 
       <div className="absolute inset-0 opacity-35 [background-image:radial-gradient(circle,rgba(255,255,255,0.32)_0_1px,transparent_1.4px)] [background-size:28px_28px]" />
@@ -157,11 +157,11 @@ function MomentCard({
             {item.badge}
           </span>
 
-          <h3 className="mt-8 max-w-[19rem] text-[clamp(1.9rem,2.8vw,2.8rem)] font-black leading-[0.88] tracking-[-0.085em] text-white">
+          <h3 className="dhoom-card-title mt-7 max-w-[19rem] text-[clamp(1.85rem,2.5vw,2.55rem)]">
             {item.title}
           </h3>
 
-          <p className="mt-4 max-w-[18rem] text-sm font-bold leading-6 text-white/62">
+          <p className="mt-3 max-w-[18rem] text-[0.82rem] font-bold leading-6 text-white/62">
             {item.line}
           </p>
         </div>

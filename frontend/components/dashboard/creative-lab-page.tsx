@@ -13,7 +13,10 @@ import {
 } from "@/lib/generated-asset-versions"
 import { generatePosterAsset } from "@/lib/poster-generation-api"
 import { getBrandProfile, type BrandProfile } from "@/lib/brand-profile"
-import { getBrandProfileId } from "@/lib/brand-profile-session"
+import {
+  clearBrandProfileId,
+  getBrandProfileId,
+} from "@/lib/brand-profile-session"
 import {
   getCreativeLabAssets,
   type CreativeLabAsset,
@@ -66,6 +69,12 @@ export function CreativeLabPage() {
         }
 
         const brand = await getBrandProfile(brandId)
+        if (!brand) {
+          clearBrandProfileId()
+          setActiveBrand(null)
+          setAssets([])
+          return
+        }
         setActiveBrand(brand)
 
         const data = await getCreativeLabAssets(brandId)

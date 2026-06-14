@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -25,6 +26,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans-stack);
+  overflow-x: hidden;
 }
 
 h1,
@@ -38,6 +40,89 @@ h6 {
 
 .font-urdu {
   font-family: var(--font-urdu), serif;
+}
+
+.dhoom-luxe-heading {
+  font-family: var(--font-sage), Georgia, serif;
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  color: rgba(255, 255, 255, 0.96);
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.2),
+    0 22px 80px rgba(217, 255, 63, 0.09);
+}
+
+.dhoom-luxe-heading span,
+.dhoom-luxe-accent {
+  color: #d9ff3f;
+  font-style: italic;
+  text-shadow:
+    0 0 18px rgba(217, 255, 63, 0.18),
+    0 18px 70px rgba(212, 175, 55, 0.14);
+}
+
+.dhoom-luxe-heading-dark {
+  font-family: var(--font-sage), Georgia, serif;
+  font-weight: 700;
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  color: #070816;
+  text-shadow: 0 22px 80px rgba(124, 58, 237, 0.12);
+}
+
+.dhoom-luxe-heading-dark span {
+  color: #7c3aed;
+  font-style: italic;
+}
+
+.dhoom-card-title {
+  font-family: var(--font-sage), Georgia, serif;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: white;
+  text-wrap: balance;
+}
+
+.dhoom-stat-number {
+  font-family: var(--font-sage), Georgia, serif;
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.035em;
+  color: white;
+}
+
+.dhoom-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  filter: blur(8px);
+  transition:
+    opacity 820ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 820ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 820ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.dhoom-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .dhoom-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 }
 
 /* =========================
@@ -592,6 +677,77 @@ h6 {
    NEW HERO CLASSES
 ========================= */
 
+.dhoom-scroll-scene {
+  --hero-word-opacity: 1;
+  --hero-copy-progress: 0;
+  --hero-stage-scale-y: 1;
+  --hero-stage-radius: 0px;
+  --hero-stage-inset: 0vw;
+  --hero-side-opacity: 0;
+  --hero-left-x: -115%;
+  --hero-right-x: 115%;
+  --hero-copy-y: 18px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  isolation: isolate;
+  background: #080814;
+}
+
+.dhoom-scroll-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: var(--hero-stage-radius);
+  clip-path: inset(0 var(--hero-stage-inset) round var(--hero-stage-radius));
+  transform: translate3d(0, 0, 0) scaleY(var(--hero-stage-scale-y));
+  transform-origin: center center;
+  will-change: transform, clip-path;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+}
+
+.dhoom-scroll-title {
+  opacity: var(--hero-word-opacity);
+  will-change: opacity;
+}
+
+.dhoom-scroll-copy-layer {
+  opacity: var(--hero-copy-progress);
+  transform: translate3d(0, var(--hero-copy-y), 0);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.dhoom-scroll-rail {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  z-index: 4;
+  width: min(22vw, 340px);
+  flex-direction: column;
+  gap: 1rem;
+  opacity: var(--hero-side-opacity);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.dhoom-scroll-rail-left {
+  left: clamp(0.9rem, 1.4vw, 1.4rem);
+  transform: translate3d(var(--hero-left-x), 0, 0);
+}
+
+.dhoom-scroll-rail-right {
+  right: clamp(0.9rem, 1.4vw, 1.4rem);
+  transform: translate3d(var(--hero-right-x), 0, 0);
+}
+
+@media (max-width: 767px) {
+  .dhoom-scroll-stage {
+    clip-path: inset(0 0 round 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .dhoom-hero-stage {
   background:
     radial-gradient(ellipse 60% 50% at 10% 24%, rgba(170, 200, 30, 0.28), transparent 62%),
@@ -1092,11 +1248,12 @@ h6 {
 
 .creative-scroll-copy h2 {
   margin: 0;
+  font-family: var(--font-sage), Georgia, serif;
   color: white;
-  font-size: clamp(3.6rem, 6.4vw, 6.8rem);
-  font-weight: 950;
-  line-height: 0.82;
-  letter-spacing: -0.09em;
+  font-size: clamp(3.4rem, 5.6vw, 6.2rem);
+  font-weight: 700;
+  line-height: 0.84;
+  letter-spacing: -0.045em;
   text-shadow:
     0 0 16px rgba(255, 255, 255, 0.18),
     0 0 70px rgba(168, 85, 247, 0.2);
@@ -1181,11 +1338,12 @@ h6 {
 
 .creative-scroll-copy h2 {
   margin: 0;
+  font-family: var(--font-sage), Georgia, serif;
   color: white !important;
-  font-size: clamp(4.6rem, 7vw, 7.8rem);
-  font-weight: 950;
-  line-height: 0.82;
-  letter-spacing: -0.09em;
+  font-size: clamp(3.6rem, 5.8vw, 6.4rem);
+  font-weight: 700;
+  line-height: 0.84;
+  letter-spacing: -0.045em;
   text-shadow:
     0 0 14px rgba(255, 255, 255, 0.26),
     0 0 60px rgba(168, 85, 247, 0.24);
@@ -1201,10 +1359,10 @@ h6 {
 
 .creative-scroll-lines span {
   display: block;
-  font-size: clamp(2.7rem, 4.8vw, 5rem);
+  font-size: clamp(2.2rem, 3.8vw, 4.1rem);
   font-weight: 950;
-  line-height: 0.9;
-  letter-spacing: -0.07em;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
 }
 
 .creative-scroll-lines span:nth-child(1) {
@@ -1220,10 +1378,10 @@ h6 {
 }
 
 .creative-scroll-description {
-  max-width: 43rem;
+  max-width: 39rem;
   margin: 1.6rem auto 0;
   color: rgba(255, 255, 255, 0.74) !important;
-  font-size: 1rem;
+  font-size: 0.94rem;
   font-weight: 650;
   line-height: 1.75;
 }

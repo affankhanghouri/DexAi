@@ -12,7 +12,7 @@ export default function RevealObserver() {
           observer.unobserve(e.target)
         }
       }),
-      { threshold: 0.12 }
+      { rootMargin: "0px 0px 12% 0px", threshold: 0.08 }
     )
     els.forEach((el) => observer.observe(el))
     return () => observer.disconnect()

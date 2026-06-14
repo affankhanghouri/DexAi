@@ -22,6 +22,9 @@ export type BrandProfile = {
   status: string
   sourceType: string | null
   sourcePlatform: string | null
+  isEnriched: boolean
+  enrichmentCount: number
+  lastEnrichedAt: string | null
   createdAt: string
 }
 
@@ -47,6 +50,9 @@ type BrandProfileRow = {
   status: string
   source_type: string | null
   source_platform: string | null
+  is_enriched: boolean | null
+  enrichment_count: number | null
+  last_enriched_at: string | null
   created_at: string
 }
 
@@ -72,6 +78,9 @@ const brandProfileSelect = `
   status,
   source_type,
   source_platform,
+  is_enriched,
+  enrichment_count,
+  last_enriched_at,
   created_at
 `
 
@@ -98,6 +107,9 @@ function mapBrandProfile(row: BrandProfileRow): BrandProfile {
     status: row.status,
     sourceType: row.source_type,
     sourcePlatform: row.source_platform,
+    isEnriched: Boolean(row.is_enriched),
+    enrichmentCount: row.enrichment_count || 0,
+    lastEnrichedAt: row.last_enriched_at,
     createdAt: row.created_at,
   }
 }
@@ -107,10 +119,14 @@ export async function getBrandProfile(id: string) {
     .from("brand_profiles")
     .select(brandProfileSelect)
     .eq("id", id)
-    .single()
+    .maybeSingle()
 
   if (error) {
     throw new Error(error.message)
+  }
+
+  if (!data) {
+    return null
   }
 
   return mapBrandProfile(data as BrandProfileRow)

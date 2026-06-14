@@ -15,7 +15,7 @@ export function CampaignTransformSection() {
   return (
     <section
       id="campaign"
-      className="relative overflow-hidden bg-[#050611] px-4 py-16 text-white md:px-10 lg:px-16"
+      className="dhoom-reveal relative overflow-hidden bg-[#050611] px-4 py-16 text-white md:px-10 lg:px-16"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(212,175,55,0.22),transparent_30%),radial-gradient(circle_at_82%_18%,rgba(236,72,153,0.28),transparent_34%),radial-gradient(circle_at_50%_100%,rgba(20,184,166,0.24),transparent_40%),linear-gradient(135deg,#050611,#160724_48%,#061421)]" />
 

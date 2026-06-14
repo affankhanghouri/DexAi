@@ -141,6 +141,7 @@ export type RecentCampaign = {
   brandProfileId: string | null
   productName: string | null
   category: string | null
+  campaignHeadline: string | null
   selectedAngleTitle: string | null
   selectedVariantName: string | null
   status: string
@@ -150,6 +151,7 @@ export type RecentCampaign = {
 type RecentCampaignRow = {
   id: string
   draft_id: string
+  campaign_headline: string | null
   status: string
   created_at: string
   campaign_drafts:
@@ -181,6 +183,7 @@ function mapRecentCampaign(row: RecentCampaignRow): RecentCampaign {
     brandProfileId: draft?.brand_profile_id || null,
     productName: draft?.product_name || null,
     category: draft?.category || null,
+    campaignHeadline: row.campaign_headline,
     selectedAngleTitle: draft?.selected_angle_title || null,
     selectedVariantName: draft?.selected_variant_name || null,
     status: row.status,
@@ -193,6 +196,7 @@ function buildCampaignListQuery() {
     `
     id,
     draft_id,
+    campaign_headline,
     status,
     created_at,
     campaign_drafts!inner (

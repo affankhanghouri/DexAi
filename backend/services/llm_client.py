@@ -33,7 +33,7 @@ from prompts.campaign_asset_brief_prompt import (
     CAMPAIGN_ASSET_BRIEF_SYSTEM_PROMPT,
     build_campaign_asset_brief_user_prompt,
 )
-from prompts.campaign_asset_brief_refinement_prompt import (
+from prompts.campaign_asset_brief_refinement import (
     CAMPAIGN_ASSET_BRIEF_REFINEMENT_SYSTEM_PROMPT,
     build_campaign_asset_brief_refinement_user_prompt,
 )
@@ -306,7 +306,7 @@ def refine_campaign_asset_brief_with_llm(
     output_text = response.output_text
 
     if not output_text:
-        raise ValueError("Model returned empty refined asset brief response.")
+        raise ValueError("Model returned empty campaign asset brief refinement.")
 
     return parse_json_output(output_text)
 
