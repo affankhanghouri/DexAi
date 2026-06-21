@@ -9,13 +9,13 @@ import type { LucideIcon } from "lucide-react"
 const intelligenceCards = [
   {
     icon: UsersRound,
-    title: "Tailored for Pakistani audiences",
-    text: "Dhoom understands local buying moments, Urdu-English selling language, Eid drops, WhatsApp habits, and the way small sellers actually move product.",
+    title: "Tailored for real buyers",
+    text: "DEX AI understands buying moments, audience intent, product desire, channel behavior, and the way modern brands move customers from attention to action.",
   },
   {
     icon: ChartNoAxesCombined,
     title: "Optimal marketing direction",
-    text: "Before creating visuals, Dhoom chooses the angle, audience, offer, urgency, and platform logic that gives the product a reason to sell.",
+    text: "Before creating visuals, DEX AI chooses the angle, audience, offer, urgency, and platform logic that gives the product a reason to sell.",
   },
   {
     icon: Bot,
@@ -51,7 +51,7 @@ export function CampaignIntelligenceSection() {
           </div>
 
           <p className="max-w-[620px] text-base font-bold leading-8 text-white/62 lg:pb-2">
-            Dhoom is built for sellers who need more than pretty posts. It
+            DEX AI is built for brands that need more than pretty posts. It
             reads the product, the buyer, the brand, and the moment before it
             generates anything.
           </p>
@@ -66,13 +66,13 @@ export function CampaignIntelligenceSection() {
         <div className="mt-5 overflow-hidden rounded-full border border-white/10 bg-white/[0.045] py-2.5 backdrop-blur-xl">
           <div className="intelligence-ticker flex w-max gap-3">
             {[
-              "Local buyer behavior",
+              "Buyer behavior",
               "Brand tone memory",
               "Offer timing",
               "Product DNA",
               "Platform logic",
               "Campaign clarity",
-              "Local buyer behavior",
+              "Buyer behavior",
               "Brand tone memory",
               "Offer timing",
               "Product DNA",

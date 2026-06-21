@@ -43,7 +43,7 @@ export function RequestAccessSection() {
     const trimmedBrandLink = brandLink.trim()
 
     if (contactMethod === "whatsapp" && !trimmedWhatsapp) {
-      setError("Please enter the WhatsApp number where we should contact you.")
+      setError("Please enter the phone number where we should contact you.")
       return
     }
 
@@ -65,9 +65,9 @@ export function RequestAccessSection() {
 
       const requestNotes = [
         `Preferred contact: ${contactMethod}`,
-        trimmedWhatsapp ? `WhatsApp: ${trimmedWhatsapp}` : "",
+        trimmedWhatsapp ? `Phone: ${trimmedWhatsapp}` : "",
         trimmedEmail ? `Email: ${trimmedEmail}` : "",
-        note.trim() ? `Seller note: ${note.trim()}` : "",
+        note.trim() ? `Brand note: ${note.trim()}` : "",
       ]
         .filter(Boolean)
         .join("\n")
@@ -116,7 +116,7 @@ export function RequestAccessSection() {
           </Link>
 
           <span className="rounded-full border border-[#d4af37]/35 bg-white/[0.06] px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.26em] text-[#d4af37] backdrop-blur-2xl">
-            Dhoom Studio
+            DEX AI Studio
           </span>
         </div>
 
@@ -132,14 +132,14 @@ export function RequestAccessSection() {
             </div>
 
             <h1 className="dhoom-luxe-heading max-w-[650px] text-[clamp(2.7rem,5.8vw,5.7rem)]">
-              Dhoom Studio
+              DEX AI Studio
               <br />
               <span>is opening soon.</span>
             </h1>
 
             <p className="mt-5 max-w-[590px] text-[0.98rem] font-bold leading-8 text-white/62 md:text-base">
               Until the studio opens, you can get a free campaign sample from
-              the actual Dhoom engine. Send your brand link and product photo;
+              the actual DEX AI engine. Send your brand link and product photo;
               our team will contact you with the sample.
             </p>
 
@@ -155,7 +155,7 @@ export function RequestAccessSection() {
                   </h2>
                   <p className="mt-1 text-sm font-bold leading-6 text-white/50">
                     This is not dashboard access yet. It is a free sample made
-                    for selected brands while Dhoom Studio prepares to launch.
+                    for selected brands while DEX AI Studio prepares to launch.
                   </p>
                 </div>
               </div>
@@ -194,7 +194,7 @@ export function RequestAccessSection() {
                       <ContactToggle
                         active={contactMethod === "whatsapp"}
                         icon={<MessageCircle size={16} />}
-                        label="WhatsApp"
+                        label="Phone"
                         onClick={() => setContactMethod("whatsapp")}
                       />
                       <ContactToggle
@@ -208,14 +208,14 @@ export function RequestAccessSection() {
                     {contactMethod === "whatsapp" ? (
                       <FormField
                         icon={<MessageCircle size={16} />}
-                        label="WhatsApp number"
+                        label="Phone number"
                       >
                         <input
                           value={whatsappNumber}
                           onChange={(event) =>
                             setWhatsappNumber(event.target.value)
                           }
-                          placeholder="+92 3XX XXXXXXX"
+                          placeholder="+1 555 000 0000"
                           className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
                         />
                       </FormField>
@@ -234,7 +234,7 @@ export function RequestAccessSection() {
                       <input
                         value={brandLink}
                         onChange={(event) => setBrandLink(event.target.value)}
-                        placeholder="Instagram, Facebook, Shopify, Daraz..."
+                        placeholder="Instagram, Facebook, Shopify, website..."
                         className="w-full bg-transparent text-sm font-bold text-white outline-none placeholder:text-white/28"
                       />
                     </FormField>
@@ -421,7 +421,7 @@ function SuccessState({ onReset }: { onReset: () => void }) {
         </h2>
 
         <p className="mx-auto mt-3 max-w-sm text-sm font-bold leading-7 text-white/50">
-          Dhoom AI team will contact you soon with your free campaign sample.
+          DEX AI team will contact you soon with your free campaign sample.
         </p>
 
         <button

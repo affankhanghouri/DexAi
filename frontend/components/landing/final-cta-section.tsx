@@ -21,7 +21,7 @@ export function FinalCtaSection() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_15%,rgba(217,255,63,0.18),transparent_26%),radial-gradient(circle_at_78%_18%,rgba(236,72,153,0.12),transparent_30%)]" />
             <Image
               src="/images/landing/landing_perfume.png"
-              alt="Dhoom perfume ads across Facebook, TikTok, Instagram, YouTube, and Google"
+              alt="DEX AI perfume ads across Facebook, TikTok, Instagram, YouTube, and Google"
               width={1280}
               height={1280}
               className="relative z-10 h-auto w-full rounded-[1.25rem] object-contain shadow-[0_24px_70px_rgba(7,8,22,0.2)] transition duration-700 group-hover:scale-[1.025]"
@@ -51,7 +51,7 @@ export function FinalCtaSection() {
 
             <p className="mt-6 max-w-[560px] text-base font-bold leading-8 text-white/64">
               Get publish-ready ads for Facebook, Google, TikTok, Instagram,
-              and YouTube. Every Dhoom creative is shaped for the platform,
+              and YouTube. Every DEX AI creative is shaped for the platform,
               the buyer, and the selling moment.
             </p>
 
@@ -76,7 +76,7 @@ export function FinalCtaSection() {
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d9ff3f] px-7 py-4 text-sm font-black text-[#070816] shadow-[0_24px_70px_rgba(217,255,63,0.22)] transition hover:-translate-y-1 hover:scale-[1.02]"
               >
                 <Rocket size={17} strokeWidth={2.6} />
-                Start Dhoom
+                Start DEX AI
               </Link>
 
               <Link
@@ -90,8 +90,8 @@ export function FinalCtaSection() {
         </div>
 
         <footer className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm font-bold text-white/45 md:flex-row">
-          <p>© 2026 Dhoom AI.  all rights are reserved</p>
-          <p>One product photo. Har platform par Dhoom.</p>
+          <p>© 2026 DEX AI. all rights are reserved</p>
+          <p>One product photo. Campaign-ready everywhere.</p>
         </footer>
       </div>
 

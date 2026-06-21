@@ -8,7 +8,7 @@ export function Header() {
           href="/"
           className="text-lg font-black tracking-[-0.04em] text-[#070816]"
         >
-          Dhoom AI
+          DEX AI
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -38,7 +38,7 @@ export function Header() {
           href="/request-access"
           className="rounded-full bg-[#070816] px-6 py-3 text-sm font-black text-white shadow-[0_18px_40px_rgba(7,8,22,0.22)] transition hover:scale-105"
         >
-          Start Dhoom
+          Start DEX AI
         </Link>
       </div>
     </header>

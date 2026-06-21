@@ -134,39 +134,54 @@ h6 {
   position: absolute;
   inset: -20%;
   background:
-    radial-gradient(circle at 18% 78%, rgba(212, 175, 55, 0.55), transparent 26%),
-    radial-gradient(circle at 46% 40%, rgba(255, 255, 255, 0.18), transparent 18%),
-    radial-gradient(circle at 74% 18%, rgba(210, 60, 220, 0.28), transparent 26%);
-  filter: blur(42px);
-  opacity: 0.75;
-  animation: dhoomAmbientGlow 7s ease-in-out infinite;
+    radial-gradient(circle at 16% 76%, rgba(245, 158, 11, 0.34), transparent 28%),
+    radial-gradient(circle at 52% 42%, rgba(34, 211, 238, 0.16), transparent 24%),
+    radial-gradient(circle at 78% 20%, rgba(236, 72, 153, 0.28), transparent 30%);
+  filter: blur(58px);
+  opacity: 0.7;
+  animation: dhoomAmbientGlow 12s ease-in-out infinite;
 }
 
 @keyframes dhoomAmbientGlow {
   0%,
   100% {
-    transform: translate3d(-2%, -1%, 0) scale(1);
-    opacity: 0.6;
+    transform: translate3d(-1%, -1%, 0) scale(1);
+    opacity: 0.58;
   }
 
   50% {
-    transform: translate3d(2%, 2%, 0) scale(1.08);
-    opacity: 0.95;
+    transform: translate3d(1.5%, 1.5%, 0) scale(1.04);
+    opacity: 0.82;
   }
 }
 
 .dhoom-title-stack {
-  
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-
-  /* CHANGE THIS: whole DHOOM/MACHAO/buttons up-down */
-  margin-top: 8vh;
-
+  margin-top: 3vh;
   animation: dhoomTitleEnter 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.dhoom-title-stack::before {
+  content: "";
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: min(76vw, 58rem);
+  height: min(24vw, 13rem);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 18% 48%, rgba(217, 255, 63, 0.16), transparent 32%),
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 82% 44%, rgba(34, 211, 238, 0.18), transparent 34%);
+  filter: blur(42px);
+  opacity: 0.8;
+  transform: translate(-50%, -50%);
+  animation: dexHaloPulse 8s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes dhoomTitleEnter {
@@ -184,76 +199,112 @@ h6 {
 }
 
 .dhoom-hero-small-text {
-  margin: 0 0 0.75rem;
-  font-family: var(--font-sage), "Times New Roman", serif;
-  font-size: clamp(1.25rem, 2.4vw, 2.5rem);
-  font-weight: 500;
+  margin: 0 0 0.95rem;
+  font-family: var(--font-sans-stack);
+  font-size: clamp(0.72rem, 1.2vw, 0.95rem);
+  font-weight: 950;
   line-height: 1;
-  letter-spacing: 0.32em;
-  color: var(--dhoom-gold);
-  text-transform: lowercase;
-  text-shadow: 0 0 16px rgba(212, 175, 55, 0.22);
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.76);
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.16);
 }
 
 .dhoom-hero-main-word {
   margin: 0;
   user-select: none;
- font-size: clamp(5rem, 11vw, 10rem);
-  font-weight: 950;
-  line-height: 0.78;
-  letter-spacing: -0.015em;
-  color: rgba(255, 255, 255, 0.94);
   position: relative;
-
-  /* CHANGE THIS: DHOOM shine/glow strength */
-  text-shadow:
-    0 0 2px rgba(255, 255, 255, 0.55),
-    0 0 8px rgba(255, 255, 255, 0.26),
-    0 0 20px rgba(255, 255, 255, 0.12),
-    0 0 38px rgba(168, 85, 247, 0.08);
-
-  animation:
-    dhoomWordGlow 4.6s ease-in-out infinite,
-    dhoomWordFloat 4.2s ease-in-out infinite;
+  z-index: 1;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(0.08rem, 0.54vw, 0.46rem);
+  font-family: var(--font-heading), Arial, Helvetica, sans-serif;
+  font-size: clamp(4.8rem, 12.5vw, 11.5rem);
+  font-weight: 950;
+  line-height: 0.86;
+  letter-spacing: 0;
+  transform: translateZ(0);
+  filter: drop-shadow(0 24px 58px rgba(0, 0, 0, 0.44));
+  animation: dexWordBreath 9s ease-in-out infinite;
 }
 
 .dhoom-hero-main-word::after {
-  content: "DHOOM";
+  content: "DEX AI";
   position: absolute;
-  inset: 0;
+  inset: -0.06em -0.1em;
   background: linear-gradient(
-    105deg,
-    transparent 28%,
-    rgba(255, 255, 255, 0.34) 48%,
-    rgba(212, 175, 55, 0.24) 52%,
-    transparent 72%
+    100deg,
+    transparent 24%,
+    rgba(255, 255, 255, 0.68) 46%,
+    rgba(217, 255, 63, 0.2) 54%,
+    transparent 76%
   );
-  background-size: 240% 100%;
+  background-size: 260% 100%;
   background-position: -100% 0;
+  font: inherit;
+  letter-spacing: inherit;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* CHANGE THIS: lower = less shiny, higher = more shiny */
-  opacity: 0.6;
-
-  animation: dhoomShimmer 5.2s ease-in-out infinite;
+  opacity: 0;
+  animation: dexShimmer 5.8s ease-in-out infinite;
   pointer-events: none;
 }
 
-@keyframes dhoomShimmer {
+.dex-letter {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(214, 225, 235, 0.92) 38%, rgba(112, 124, 142, 0.96) 100%),
+    linear-gradient(90deg, rgba(217, 255, 63, 0.26), rgba(34, 211, 238, 0.2), rgba(236, 72, 153, 0.2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3),
+    0 16px 36px rgba(0, 0, 0, 0.46),
+    0 0 34px rgba(34, 211, 238, 0.12);
+}
+
+.dex-blue {
+  filter: drop-shadow(0 0 28px rgba(34, 211, 238, 0.18));
+}
+
+.dex-red {
+  filter: drop-shadow(0 0 28px rgba(236, 72, 153, 0.16));
+}
+
+.dex-yellow {
+  filter: drop-shadow(0 0 28px rgba(217, 255, 63, 0.16));
+}
+
+.dex-green {
+  filter: drop-shadow(0 0 28px rgba(20, 184, 166, 0.18));
+}
+
+.dex-gap {
+  display: inline-block;
+  width: clamp(0.35rem, 2vw, 1.8rem);
+}
+
+@keyframes dexShimmer {
   0% {
     background-position: -100% 0;
     opacity: 0;
   }
 
   24% {
-    opacity: 0.45;
+    opacity: 0;
   }
 
-  58% {
+  42% {
+    opacity: 0.58;
+  }
+
+  70% {
     background-position: 180% 0;
-    opacity: 0.35;
+    opacity: 0;
   }
 
   100% {
@@ -262,32 +313,28 @@ h6 {
   }
 }
 
-@keyframes dhoomWordFloat {
+@keyframes dexWordBreath {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 24px 58px rgba(0, 0, 0, 0.44));
   }
 
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-5px) scale(1.006);
+    filter: drop-shadow(0 30px 70px rgba(0, 0, 0, 0.48));
   }
 }
 
-@keyframes dhoomWordGlow {
+@keyframes dexHaloPulse {
   0%,
   100% {
-    text-shadow:
-      0 0 2px rgba(255, 255, 255, 0.55),
-      0 0 8px rgba(255, 255, 255, 0.26),
-      0 0 20px rgba(255, 255, 255, 0.12),
-      0 0 38px rgba(168, 85, 247, 0.08);
+    opacity: 0.56;
+    transform: translate(-50%, -50%) scale(0.98);
   }
 
   50% {
-    text-shadow:
-      0 0 3px rgba(255, 255, 255, 0.62),
-      0 0 11px rgba(255, 255, 255, 0.3),
-      0 0 26px rgba(255, 255, 255, 0.14),
-      0 0 46px rgba(212, 175, 55, 0.1);
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.04);
   }
 }
 
@@ -298,19 +345,19 @@ h6 {
 .dhoom-glow-btn {
   position: relative;
   display: inline-flex;
-  min-width: 210px;
-  height: 62px;
+  min-width: 190px;
+  height: 56px;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: 999px;
-  padding: 0 2rem;
-  font-size: 1.35rem;
-  font-weight: 950;
+  padding: 0 1.6rem;
+  font-size: 1rem;
+  font-weight: 900;
   color: white;
   text-decoration: none;
   isolation: isolate;
-  backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(22px) saturate(155%);
   transition:
     transform 220ms ease,
     box-shadow 220ms ease,
@@ -320,16 +367,15 @@ h6 {
 .dhoom-glow-btn::before {
   content: "";
   position: absolute;
-  inset: 6px;
+  inset: 1px;
   z-index: -1;
   border-radius: 999px;
   background:
     linear-gradient(
-      110deg,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0.06) 30%,
-      rgba(255, 255, 255, 0.16) 58%,
-      rgba(255, 255, 255, 0.05) 100%
+      135deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.04) 42%,
+      rgba(255, 255, 255, 0.1) 100%
     );
 }
 
@@ -337,48 +383,46 @@ h6 {
   content: "";
   position: absolute;
   left: -70%;
-  top: 10%;
+  top: 14%;
   z-index: 2;
-  height: 34%;
+  height: 28%;
   width: 80%;
   border-radius: 999px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.42),
     transparent
   );
-  filter: blur(6px);
-  animation: dhoomButtonSweep 3.7s ease-in-out infinite;
+  filter: blur(8px);
+  animation: dhoomButtonSweep 5.8s ease-in-out infinite;
 }
 
 .dhoom-glow-btn-purple {
-  border: 3px solid rgba(205, 150, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   background:
-    radial-gradient(circle at 20% 30%, rgba(180, 110, 255, 0.38), transparent 34%),
-    radial-gradient(circle at 85% 60%, rgba(212, 175, 55, 0.34), transparent 34%),
-    linear-gradient(135deg, rgba(22, 10, 38, 0.78), rgba(9, 18, 28, 0.72));
+    radial-gradient(circle at 18% 30%, rgba(34, 211, 238, 0.22), transparent 36%),
+    radial-gradient(circle at 86% 62%, rgba(236, 72, 153, 0.18), transparent 38%),
+    linear-gradient(135deg, rgba(16, 22, 37, 0.82), rgba(6, 10, 22, 0.78));
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.18) inset,
-    0 0 22px rgba(168, 85, 247, 0.85),
-    0 0 52px rgba(168, 85, 247, 0.42),
-    inset 0 2px 8px rgba(255, 255, 255, 0.22);
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 14px 36px rgba(0, 0, 0, 0.32),
+    0 0 34px rgba(34, 211, 238, 0.14);
 }
 
 .dhoom-glow-btn-gold {
-  min-width: 250px;
-  border: 3px solid rgba(245, 210, 94, 0.95);
+  min-width: 270px;
+  border: 1px solid rgba(217, 255, 63, 0.5);
   background:
-    radial-gradient(circle at 18% 25%, rgba(255, 255, 255, 0.35), transparent 30%),
-    radial-gradient(circle at 86% 55%, rgba(95, 58, 18, 0.32), transparent 36%),
-    linear-gradient(135deg, #6c430d 0%, #d4af37 38%, #f4d976 55%, #9c6e17 100%);
-  color: white;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+    radial-gradient(circle at 14% 20%, rgba(255, 255, 255, 0.22), transparent 32%),
+    radial-gradient(circle at 84% 56%, rgba(34, 211, 238, 0.16), transparent 36%),
+    linear-gradient(135deg, #d9ff3f 0%, #f5c84b 42%, #f97316 100%);
+  color: #070816;
+  text-shadow: none;
   box-shadow:
-    0 0 0 1px rgba(255, 245, 180, 0.24) inset,
-    0 0 24px rgba(212, 175, 55, 0.88),
-    0 0 58px rgba(212, 175, 55, 0.46),
-    inset 0 2px 8px rgba(255, 255, 255, 0.28);
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset,
+    0 16px 44px rgba(0, 0, 0, 0.28),
+    0 0 40px rgba(217, 255, 63, 0.2);
 }
 
 @keyframes dhoomButtonSweep {
@@ -388,7 +432,7 @@ h6 {
   }
 
   28% {
-    opacity: 0.9;
+    opacity: 0.68;
   }
 
   60%,
@@ -399,8 +443,8 @@ h6 {
 }
 
 .dhoom-glow-btn:hover {
-  transform: translateY(-4px) scale(1.035);
-  filter: brightness(1.08);
+  transform: translateY(-3px);
+  filter: brightness(1.04);
 }
 
 /* Scroll-in hero CTA */
@@ -648,17 +692,17 @@ h6 {
 ========================= */
 
 @media (max-width: 768px) {
-  .dhoom-hero-small-text {
-    font-size: clamp(0.95rem, 4vw, 1.5rem);
-    letter-spacing: 0.24em;
+  .dhoom-title-stack {
+    margin-top: 1vh;
   }
 
   .dhoom-hero-main-word {
-    font-size: clamp(5.3rem, 23vw, 8rem);
+    font-size: clamp(3.6rem, 18vw, 6.6rem);
+    gap: clamp(0.02rem, 0.32vw, 0.2rem);
   }
 
-  .dhoom-hero-machaao {
-    font-size: clamp(2.8rem, 12vw, 4.5rem);
+  .dex-gap {
+    width: clamp(0.24rem, 1.4vw, 0.78rem);
   }
 
   .dhoom-hero-action-row {
@@ -668,8 +712,14 @@ h6 {
   }
 
   .dhoom-glow-btn {
-    min-width: 12rem;
-    padding: 0.85rem 1.2rem;
+    width: min(86vw, 18rem);
+    min-width: 0;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.94rem;
+  }
+
+  .dhoom-glow-btn-gold {
+    min-width: 0;
   }
 }
 
@@ -750,10 +800,10 @@ h6 {
 
 .dhoom-hero-stage {
   background:
-    radial-gradient(ellipse 60% 50% at 10% 24%, rgba(170, 200, 30, 0.28), transparent 62%),
-    radial-gradient(ellipse 66% 58% at 84% 18%, rgba(190, 55, 210, 0.48), transparent 58%),
-    radial-gradient(ellipse 42% 38% at 50% 88%, rgba(18, 155, 145, 0.28), transparent 52%),
-    linear-gradient(160deg, #0c1008 0%, #0d0318 45%, #050c16 100%);
+    radial-gradient(ellipse 60% 48% at 12% 24%, rgba(217, 255, 63, 0.16), transparent 62%),
+    radial-gradient(ellipse 64% 56% at 86% 16%, rgba(236, 72, 153, 0.28), transparent 58%),
+    radial-gradient(ellipse 42% 38% at 48% 88%, rgba(20, 184, 166, 0.22), transparent 52%),
+    linear-gradient(160deg, #05070d 0%, #111827 48%, #041016 100%);
 }
 
 .dhoom-soft-aurora {
@@ -761,29 +811,29 @@ h6 {
   inset: -30%;
   pointer-events: none;
   background:
-    radial-gradient(circle at 14% 72%, rgba(212, 175, 55, 0.42), transparent 25%),
-    radial-gradient(circle at 54% 52%, rgba(255, 255, 255, 0.12), transparent 20%),
-    radial-gradient(circle at 82% 18%, rgba(236, 72, 153, 0.3), transparent 30%),
-    radial-gradient(circle at 55% 92%, rgba(20, 184, 166, 0.32), transparent 34%);
-  filter: blur(52px);
-  opacity: 0.78;
-  animation: dhoomAuroraFlow 8s ease-in-out infinite;
+    radial-gradient(circle at 14% 72%, rgba(245, 158, 11, 0.28), transparent 25%),
+    radial-gradient(circle at 54% 52%, rgba(255, 255, 255, 0.08), transparent 20%),
+    radial-gradient(circle at 82% 18%, rgba(236, 72, 153, 0.22), transparent 30%),
+    radial-gradient(circle at 55% 92%, rgba(20, 184, 166, 0.24), transparent 34%);
+  filter: blur(64px);
+  opacity: 0.66;
+  animation: dhoomAuroraFlow 14s ease-in-out infinite;
 }
 
 @keyframes dhoomAuroraFlow {
   0% {
-    transform: translate3d(-3%, -2%, 0) scale(1);
-    opacity: 0.58;
+    transform: translate3d(-2%, -1%, 0) scale(1);
+    opacity: 0.5;
   }
 
   50% {
-    transform: translate3d(3%, 2%, 0) scale(1.08);
-    opacity: 0.95;
+    transform: translate3d(2%, 1.5%, 0) scale(1.04);
+    opacity: 0.76;
   }
 
   100% {
-    transform: translate3d(-3%, -2%, 0) scale(1);
-    opacity: 0.58;
+    transform: translate3d(-2%, -1%, 0) scale(1);
+    opacity: 0.5;
   }
 }
 
@@ -791,17 +841,17 @@ h6 {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.32;
   background-image:
-    radial-gradient(circle, rgba(212, 175, 55, 0.8) 0 1px, transparent 1.4px),
-    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.2px);
-  background-size: 44px 44px, 82px 82px;
+    radial-gradient(circle, rgba(217, 255, 63, 0.42) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.34) 0 1px, transparent 1.2px);
+  background-size: 54px 54px, 104px 104px;
   background-position: 0 0, 24px 18px;
   mask-image:
     radial-gradient(circle at 18% 73%, black 0 20%, transparent 38%),
     radial-gradient(circle at 51% 44%, black 0 15%, transparent 34%),
     radial-gradient(circle at 77% 17%, black 0 12%, transparent 30%);
-  animation: dhoomDustDrift 9s ease-in-out infinite;
+  animation: dhoomDustDrift 16s ease-in-out infinite;
 }
 
 @keyframes dhoomDustDrift {
@@ -812,8 +862,8 @@ h6 {
   }
 
   50% {
-    transform: translate3d(18px, -14px, 0);
-    opacity: 0.75;
+    transform: translate3d(12px, -8px, 0);
+    opacity: 0.46;
   }
 }
 
@@ -827,13 +877,13 @@ h6 {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(212, 175, 55, 0.18),
-    rgba(255, 255, 255, 0.2),
+    rgba(34, 211, 238, 0.12),
+    rgba(255, 255, 255, 0.12),
     transparent
   );
-  filter: blur(26px);
+  filter: blur(34px);
   transform: rotate(18deg);
-  animation: dhoomRibbonSweep 6.8s ease-in-out infinite;
+  animation: dhoomRibbonSweep 12s ease-in-out infinite;
 }
 
 @keyframes dhoomRibbonSweep {
@@ -843,7 +893,7 @@ h6 {
   }
 
   32% {
-    opacity: 0.72;
+    opacity: 0.48;
   }
 
   60%,
@@ -865,8 +915,7 @@ h6 {
 }
 
 .dhoom-hero-action-row {
-  /* CHANGE THIS: buttons up-down */
-  margin-top: 2.35rem;
+  margin-top: 2.15rem;
 
   display: flex;
   align-items: center;

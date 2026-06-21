@@ -2,21 +2,22 @@ const imageFiles = [
   "image-1.jpg",
   "image-2.jpg",
   
-  "image-4.jpg",
+  "ready_image_1.jpg",
   "image-5.png",
-  "image-6.jpg",
+  "ready_image_3.jpg",
   "image-9.jpg",
   "image-8.jpg",
+  "ready_image_2.jpg"
 ]
 
 const videoFiles = [
-  "WM_video-1.mp4",
-    "WM_video-2.mp4",
+  "ready_video_1.mp4",
+    "ready_video_6.mp4",
 
-  "WM_video-4.mp4",
+  "ready_video_4.mp4",
   "WM_video-5.mp4",
   "WM_video-6.mp4",
-  "WM_video-7.mp4"
+  "ready_video_5.mp4"
 ]
 
 const bucketBaseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/landing-assets`
@@ -52,8 +53,8 @@ export function CreativeLabShowcaseSection() {
         </h2>
 
         <p className="mx-auto mt-5 max-w-[620px] text-sm font-bold leading-7 text-white/60 md:text-base">
-          Dhoom turns product photos into campaign posters, launch creatives,
-          and video ads that feel ready for Instagram and WhatsApp selling.
+          DEX AI turns product photos into campaign posters, launch creatives,
+          and video ads that feel ready for social, search, and ecommerce.
         </p>
       </div>
 
@@ -61,7 +62,7 @@ export function CreativeLabShowcaseSection() {
       <div className="relative z-10">
         <div className="mb-5 flex items-center justify-between px-5 md:px-10 lg:px-16">
           <h3 className="dhoom-card-title text-2xl md:text-4xl">
-            Campaign posters Dhoom can make
+            Campaign posters DEX AI can make
           </h3>
 
           <span className="rounded-full bg-[#d9ff3f] px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[#070816]">
@@ -182,7 +183,7 @@ function PosterCreativeCard({ src }: { src: string }) {
       <div className="relative overflow-hidden rounded-[1.35rem] bg-black">
         <img
           src={src}
-          alt="Dhoom campaign poster"
+          alt="DEX AI campaign poster"
           className="h-[400px] w-full object-cover transition duration-700 group-hover:scale-105 md:h-[460px]"
         />
 

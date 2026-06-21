@@ -6,7 +6,7 @@ const outputs = [
   "Campaign angle",
   "Poster direction",
   "Caption hook",
-  "WhatsApp copy",
+  "Message copy",
   "Offer idea",
   "Story flow",
 ]
@@ -25,7 +25,7 @@ export function CampaignTransformSection() {
       <div className="relative z-10 mx-auto max-w-[1180px]">
         <div className="mb-10 text-center">
           <p className="mx-auto mb-4 w-fit rounded-full border border-[#d4af37]/50 bg-white/5 px-4 py-2 text-[0.66rem] font-black uppercase tracking-[0.28em] text-[#d4af37] shadow-[0_0_40px_rgba(212,175,55,0.14)]">
-            Dhoom Creative Lab
+            DEX AI Creative Lab
           </p>
 
           <h2 className="mx-auto max-w-[820px] text-[clamp(2.7rem,5vw,5.3rem)] font-black leading-[0.86] tracking-[-0.085em] text-white drop-shadow-[0_0_34px_rgba(255,255,255,0.18)]">
@@ -35,7 +35,7 @@ export function CampaignTransformSection() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-[620px] text-sm font-bold leading-7 text-white/62 md:text-base">
-            Dhoom turns ordinary product photos into campaign-ready selling
+            DEX AI turns ordinary product photos into campaign-ready selling
             moments.
           </p>
         </div>
@@ -93,7 +93,7 @@ export function CampaignTransformSection() {
               <div className="absolute inset-[-18px] rounded-full border border-[#d9ff3f]/20" />
               <div className="absolute inset-[-36px] rounded-full border border-[#d4af37]/10" />
               <div className="absolute h-[1px] w-[230px] bg-gradient-to-r from-transparent via-[#d9ff3f]/55 to-transparent" />
-              DHOOM
+              DEX AI
             </div>
           </div>
 
@@ -120,7 +120,7 @@ export function CampaignTransformSection() {
                 <div className="relative h-[34rem] overflow-hidden rounded-[1.45rem] bg-black/30">
                   <Image
                     src="/images/landing/after-dhoom.png"
-                    alt="Dhoom campaign poster"
+                    alt="DEX AI campaign poster"
                     fill
                     className="object-cover"
                     sizes="45vw"

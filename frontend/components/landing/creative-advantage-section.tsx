@@ -27,7 +27,7 @@ export function CreativeAdvantageSection() {
 
       <div className="creative-container">
         <div className="creative-copy">
-          <p className="creative-kicker">DHOOM CREATIVE ENGINE</p>
+          <p className="creative-kicker">DEX AI CREATIVE ENGINE</p>
 
           <h2>
             Your unfair
@@ -42,17 +42,13 @@ export function CreativeAdvantageSection() {
           </div>
 
           <p className="creative-description">
-            Dhoom gives small Pakistani sellers the campaign brain they never
-            had — sharper ideas, stronger visuals, better posting direction,
+            DEX AI gives growing brands the campaign brain they need —
+            sharper ideas, stronger visuals, better posting direction,
             and ready-to-use marketing output.
           </p>
 
-          <p className="creative-roman">
-            Product wahi. Soch nayi. Campaign Dhoom wali.
-          </p>
-
           <Link href="/request-access" className="creative-cta">
-            Start Dhoom
+            Start DEX AI
           </Link>
         </div>
 

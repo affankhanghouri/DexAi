@@ -145,11 +145,16 @@ export function HeroSection() {
             {/* Hero title — fades out on scroll */}
             <div className="dhoom-scroll-title absolute inset-0 flex items-center justify-center overflow-visible">
               <div className="dhoom-title-stack">
-                <p className="dhoom-hero-small-text">apnay products ki</p>
+                <p className="dhoom-hero-small-text">AI campaign engine</p>
 
-                <h1 className="dhoom-hero-main-word">DHOOM</h1>
-
-                <p className="dhoom-hero-machaao">MACHAO</p>
+                <h1 className="dhoom-hero-main-word" aria-label="DEX AI">
+                  <span className="dex-letter dex-blue">D</span>
+                  <span className="dex-letter dex-red">E</span>
+                  <span className="dex-letter dex-yellow">X</span>
+                  <span className="dex-gap" aria-hidden="true" />
+                  <span className="dex-letter dex-blue">A</span>
+                  <span className="dex-letter dex-green">I</span>
+                </h1>
 
                 <div className="dhoom-hero-action-row">
                   <Link
@@ -174,7 +179,7 @@ export function HeroSection() {
               className="dhoom-scroll-copy-layer absolute inset-0 z-20 flex items-center justify-center px-6 text-center"
             >
               <div className="creative-scroll-copy">
-                <p className="creative-scroll-kicker">DHOOM CREATIVE ENGINE</p>
+                <p className="creative-scroll-kicker">DEX AI CREATIVE ENGINE</p>
 
                 <h2>
                   Your unfair
@@ -189,13 +194,13 @@ export function HeroSection() {
                 </div>
 
                 <p className="creative-scroll-description">
-                  Dhoom turns simple product photos into campaign ideas,
+                  DEX AI turns simple product photos into campaign ideas,
                   creative directions, selling angles, and ready-to-post
                   marketing that feels impossible to ignore.
                 </p>
 
                 <p className="creative-scroll-roman">
-                  Product wahi. Soch nayi. Campaign Dhoom wali.
+                  One product. Fresh angle. Campaign ready.
                 </p>
 
                 <div className="creative-scroll-actions" />
@@ -220,7 +225,7 @@ function CreativityImageCard({ src }: { src: string }) {
     <div className="creative-scroll-image-card">
       <Image
         src={src}
-        alt="Dhoom creative campaign visual"
+        alt="DEX AI creative campaign visual"
         fill
         className="object-cover"
         sizes="23vw"

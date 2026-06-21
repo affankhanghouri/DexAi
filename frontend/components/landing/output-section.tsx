@@ -10,7 +10,7 @@ const outputs = [
     tag: "02",
   },
   {
-    title: "WhatsApp Message",
+    title: "Customer Message",
     text: "A direct selling message you can send to buyers immediately.",
     tag: "03",
   },
@@ -49,7 +49,7 @@ export function OutputSection() {
           </div>
 
           <p className="max-w-2xl text-lg font-semibold leading-8 text-white/65">
-            Every Dhoom campaign is built so the seller can copy it, send it,
+            Every DEX AI campaign is built so your team can copy it, send it,
             post it, or act on it immediately.
           </p>
         </div>
@@ -65,12 +65,12 @@ export function OutputSection() {
         </div>
 
         <div className="mt-14 rounded-[2rem] bg-lime-300 p-8 text-slate-950 md:p-10">
-          <p className="font-urdu text-3xl font-bold leading-loose">
-            Seller ko blank page nahi chahiye.
+          <p className="text-3xl font-bold leading-tight">
+            Your team does not need another blank page.
           </p>
 
           <h3 className="mt-3 max-w-4xl text-4xl font-black leading-none tracking-[-0.07em] md:text-6xl">
-            They should leave with something ready to post.
+            Leave with something ready to post.
           </h3>
         </div>
       </div>

@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react"
 
 const moments = [
   {
-    badge: "EID DROP",
-    title: "Festive demand",
+    badge: "SEASONAL DROP",
+    title: "Seasonal demand",
     line: "Turn one outfit into a reason to buy now.",
     chips: ["Festive hook", "Urgency", "Poster direction"],
   },
@@ -13,7 +13,7 @@ const moments = [
     badge: "FOOD PUSH",
     title: "Craving moment",
     line: "Make a normal food item feel instantly order-worthy.",
-    chips: ["Craving angle", "Offer idea", "WhatsApp copy"],
+    chips: ["Craving angle", "Offer idea", "Message copy"],
   },
   {
     badge: "LAUNCH",
@@ -74,17 +74,17 @@ export function CampaignGallerySection() {
 
         <div className="relative z-10 mx-auto mb-7 max-w-[920px] px-5 text-center">
           <p className="mx-auto mb-3 w-fit rounded-full border border-purple-700/20 bg-purple-700/5 px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.3em] text-purple-700">
-            Dhoom Moment Engine
+            DEX AI Moment Engine
           </p>
 
           <h2 className="moment-gallery-title dhoom-luxe-heading-dark text-[clamp(2.2rem,4vw,4.25rem)]">
             One product.
             <br />
-            Many <span>Dhoom</span> moments.
+            Many <span>DEX AI</span> moments.
           </h2>
 
           <p className="mx-auto mt-4 max-w-[560px] text-sm font-bold leading-6 text-slate-500 md:text-[0.95rem]">
-            Dhoom finds the right campaign moment, the right selling angle, and
+            DEX AI finds the right campaign moment, the right selling angle, and
             the creative direction your product needs.
           </p>
         </div>

@@ -63,7 +63,7 @@ export function RevealTextSection() {
       <div className="relative z-10 mx-auto max-w-[1180px]">
         <div className="mx-auto max-w-[820px] text-center">
           <p className="mx-auto mb-4 w-fit rounded-full border border-[#d4af37]/50 bg-white/5 px-4 py-2 text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#d4af37] shadow-[0_0_40px_rgba(212,175,55,0.12)]">
-            Dhoom ad engine
+            DEX AI ad engine
           </p>
 
           <h2 className="dhoom-luxe-heading text-[clamp(2.7rem,5vw,5.7rem)]">
@@ -73,7 +73,7 @@ export function RevealTextSection() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-[670px] text-sm font-bold leading-7 text-white/62 md:text-base">
-            From Facebook to Google to TikTok — Dhoom turns one product photo
+            From Facebook to Google to TikTok — DEX AI turns one product photo
             into platform-ready ads for every place your buyer scrolls.
           </p>
         </div>
@@ -96,7 +96,7 @@ export function RevealTextSection() {
           {[
             "One photo",
             "Many formats",
-            "Pakistani seller logic",
+            "Smart selling logic",
             "Brand DNA aware",
             "Ready to post",
           ].map((item) => (
